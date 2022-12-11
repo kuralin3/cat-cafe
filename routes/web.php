@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/contact', 'App\Http\Controllers\ContactController@index')->name('contact');
+Route::post('/contact', 'App\Http\Controllers\ContactController@sendMail');
+Route::get('/contact/complete', 'App\Http\Controllers\ContactController@complete')->name('contact.complete');
