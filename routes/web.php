@@ -20,3 +20,10 @@ Route::get('/', function () {
 Route::get('/contact', 'App\Http\Controllers\ContactController@index')->name('contact');
 Route::post('/contact', 'App\Http\Controllers\ContactController@sendMail');
 Route::get('/contact/complete', 'App\Http\Controllers\ContactController@complete')->name('contact.complete');
+
+Route::get('/admin/blogs', 'App\Http\Controllers\Admin\AdminBlogController@index')->name('admin.blogs.index');
+Route::get('/admin/blogs/create', 'App\Http\Controllers\Admin\AdminBlogController@create')->name('admin.blogs.create');
+Route::post('/admin/blogs', 'App\Http\Controllers\Admin\AdminBlogController@store')->name('admin.blogs.store');
+Route::get('/admin/blogs/{blog}', 'App\Http\Controllers\Admin\AdminBlogController@edit')->name('admin.blogs.edit');
+Route::put('/admin/blogs/{blog}', 'App\Http\Controllers\Admin\AdminBlogController@update')->name('admin.blogs.update');
+Route::delete('/admin/blogs/{blog}', 'App\Http\Controllers\Admin\AdminBlogController@destroy')->name('admin.blogs.destroy');
