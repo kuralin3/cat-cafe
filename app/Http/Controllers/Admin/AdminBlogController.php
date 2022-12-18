@@ -12,14 +12,10 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminBlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::latest('updated_at')->paginate(10);
         return view('admin.blogs.index', ['blogs' => $blogs]);
     }
 
