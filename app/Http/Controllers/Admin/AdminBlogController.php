@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\Cat;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\StoreBlogRequest;
 use App\Http\Requests\Admin\UpdateBlogRequest;
@@ -63,7 +65,9 @@ class AdminBlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        return view('admin.blogs.edit', ['blog' => $blog]);
+        $categories = Category::all();
+        $cats = Cat::all();
+        return view('admin.blogs.edit', ['blog' => $blog, 'categories' => $categories, 'cats' => $cats]);
     }
 
     /**
@@ -84,6 +88,8 @@ class AdminBlogController extends Controller
             $updateData['image'] = $request->file('image')->store('blogs', 'public');
         }
 
+        $blog->category()->associate($request['category_id']);
+        $blog->cats()->sync($updateData['cats']);
         $blog->update($updateData);
         return to_route('admin.blogs.index')->with('success', '更新しました！');
     }
