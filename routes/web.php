@@ -27,3 +27,6 @@ Route::post('/admin/blogs', 'App\Http\Controllers\Admin\AdminBlogController@stor
 Route::get('/admin/blogs/{blog}', 'App\Http\Controllers\Admin\AdminBlogController@edit')->name('admin.blogs.edit');
 Route::put('/admin/blogs/{blog}', 'App\Http\Controllers\Admin\AdminBlogController@update')->name('admin.blogs.update');
 Route::delete('/admin/blogs/{blog}', 'App\Http\Controllers\Admin\AdminBlogController@destroy')->name('admin.blogs.destroy');
+
+Route::get('/admin/users/create', 'App\Http\Controllers\Admin\UserController@create')->name('admin.users.create');
+Route::post('/admin/users', 'App\Http\Controllers\Admin\UserController@store')->name('admin.users.store');
