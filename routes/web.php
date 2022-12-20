@@ -30,3 +30,8 @@ Route::delete('/admin/blogs/{blog}', 'App\Http\Controllers\Admin\AdminBlogContro
 
 Route::get('/admin/users/create', 'App\Http\Controllers\Admin\UserController@create')->name('admin.users.create');
 Route::post('/admin/users', 'App\Http\Controllers\Admin\UserController@store')->name('admin.users.store');
+
+// 認証
+Route::get('/admin/login', 'App\Http\Controllers\Admin\AuthController@showLoginForm')->name('admin.login');
+Route::post('/admin/login', 'App\Http\Controllers\Admin\AuthController@login');
+Route::post('/admin/logout', 'App\Http\Controllers\Admin\AuthController@logout')->name('admin.logout');
